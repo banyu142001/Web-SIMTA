@@ -37,7 +37,9 @@ $data_jadwal = tampilData("SELECT * FROM tb_jadwal_bimbingan JOIN tb_mahasiswa O
 
 if ($_SESSION['role'] == 'Dosen') {
 
-    $dosen = tampilData("SELECT * FROM tb_dosen JOIN tb_user ON tb_dosen.id_user = tb_user.id_user WHERE tb_user.id_user = $_SESSION[id_user]")[0];
+    $id_user = $_SESSION['id_user'];
+    $dosen = tampilData("SELECT * FROM tb_dosen JOIN tb_user ON tb_dosen.id_user = tb_user.id_user WHERE tb_dosen.id_user = $id_user")[0];
+
 
     $data_jadwal = tampilData("SELECT * FROM tb_jadwal_bimbingan JOIN tb_mahasiswa ON tb_jadwal_bimbingan.id_mhs = tb_mahasiswa.id_mhs JOIN tb_dosen ON tb_jadwal_bimbingan.id_dosen = tb_dosen.id_dosen WHERE tb_dosen.id_user = $_SESSION[id_user]");
 }
