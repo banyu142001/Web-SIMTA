@@ -201,7 +201,13 @@ $data_user = tampilData("SELECT * FROM tb_user");
                                                 <div class="form-group row">
                                                     <label for="nim" class="col-sm-3 col-form-label">NIM</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" name="nim" class="form-control" placeholder=" NIM">
+                                                        <select name="nim" id="id_user" class="form-control text-dark">
+                                                            <option value=""> pilih NIM</option>
+                                                            <?php $no = 1;
+                                                            foreach ($data_user as $user) : ?>
+                                                                <option value="<?= $user['username'] ?>">( <?= $no++ ?> ) - <?= $user['username'] ?> </option>
+                                                            <?php endforeach ?>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -225,7 +231,7 @@ $data_user = tampilData("SELECT * FROM tb_user");
                                                     <div class="col-sm-9">
                                                         <select name="prodi" id="prodi" class="form-control">
                                                             <option value=""> pilih </option>
-                                                            <option value="Sistem Informasi"> Sistem Informasi </option>
+                                                            <option value="Sistem Informasi" selected> Sistem Informasi </option>
                                                             <option value="Teknik Informatika"> Teknik Informatika </option>
                                                         </select>
                                                     </div>
@@ -235,7 +241,7 @@ $data_user = tampilData("SELECT * FROM tb_user");
                                                     <div class="col-sm-9">
                                                         <select name="status" id="status" class="form-control">
                                                             <option value=""> pilih </option>
-                                                            <option value="Aktif"> Aktif</option>
+                                                            <option value="Aktif" selected> Aktif</option>
                                                             <option value="Nonaktif"> Nonaktif</option>
                                                         </select>
                                                     </div>
@@ -247,7 +253,7 @@ $data_user = tampilData("SELECT * FROM tb_user");
                                                 <div class="form-group row">
                                                     <label for="angakatan" class="col-sm-3 col-form-label">Angakatan</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control" id="angakatan" name="angkatan" placeholder="Angkatan">
+                                                        <input type="text" class="form-control" id="angakatan" name="angkatan" value="2020">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -271,8 +277,9 @@ $data_user = tampilData("SELECT * FROM tb_user");
                                                     <div class="col-sm-9">
                                                         <select name="id_user" id="id_user" class="form-control">
                                                             <option value=""> pilih </option>
-                                                            <?php foreach ($data_user as $user) : ?>
-                                                                <option value="<?= $user['id_user'] ?>"> <?= $user['username'] ?> </option>
+                                                            <?php $no = 1;
+                                                            foreach ($data_user as $user) : ?>
+                                                                <option value="<?= $user['id_user'] ?>"> ( <?= $no++ ?> ) - <?= $user['username'] ?> </option>
                                                             <?php endforeach ?>
                                                         </select>
                                                     </div>

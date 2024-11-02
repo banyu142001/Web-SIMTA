@@ -31,7 +31,7 @@ if (isset($_POST['ubah'])) {
 // data user
 $data_user = tampilData("SELECT * FROM tb_user");
 // data Mahasiswa
-$data_mahasiswa  = tampilData("SELECT * FROM tb_mahasiswa JOIN tb_user ON tb_mahasiswa.id_user = tb_user.id_user");
+$data_mahasiswa  = tampilData("SELECT * FROM tb_mahasiswa JOIN tb_user ON tb_mahasiswa.id_user = tb_user.id_user ORDER BY id_mhs DESC");
 
 
 
@@ -61,6 +61,11 @@ $data_mahasiswa  = tampilData("SELECT * FROM tb_mahasiswa JOIN tb_user ON tb_mah
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- datatables link -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
 </head>
 
@@ -171,19 +176,19 @@ $data_mahasiswa  = tampilData("SELECT * FROM tb_mahasiswa JOIN tb_user ON tb_mah
                                     <div class="row">
                                         <div class="col-lg">
                                             <div class="table-responsive">
-                                                <table class="display expandable-table" style="width:100%">
+                                                <table id="myTable" class="display expandable-table" style="width:100%">
                                                     <thead>
                                                         <tr>
                                                             <th>No</th>
                                                             <th>NIM</th>
-                                                            <th class="text-center">Nama Mahasiswa </th>
-                                                            <th class="text-center">Jenis Kelamin</th>
+                                                            <th>Nama Mahasiswa </th>
+                                                            <th>Jenis Kelamin</th>
                                                             <th>Prodi</th>
                                                             <th>Angkatan</th>
                                                             <th>Agama</th>
                                                             <th>Email</th>
                                                             <th>Username</th>
-                                                            <th style="width: 500px;">Aksi</th>
+                                                            <th>Aksi</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -193,7 +198,7 @@ $data_mahasiswa  = tampilData("SELECT * FROM tb_mahasiswa JOIN tb_user ON tb_mah
                                                             <tr>
                                                                 <td><?= $no++ ?></td>
                                                                 <td><?= $mhs['nim'] ?></td>
-                                                                <td><?= $mhs['nama_mhs'] ?></td>
+                                                                <td style="text-transform: uppercase;"><?= $mhs['nama_mhs'] ?></td>
                                                                 <td><?= $mhs['jenis_kelamin'] ?></td>
                                                                 <td><?= $mhs['prodi'] ?></td>
                                                                 <td><?= $mhs['angkatan'] ?></td>
@@ -246,6 +251,12 @@ $data_mahasiswa  = tampilData("SELECT * FROM tb_mahasiswa JOIN tb_user ON tb_mah
     <script src="js/dashboard.js"></script>
     <script src="js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
+
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
 </body>
 
 </html>
